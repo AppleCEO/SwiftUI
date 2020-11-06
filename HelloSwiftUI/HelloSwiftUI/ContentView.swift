@@ -9,14 +9,10 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack(spacing: 30) {
+        HStack {
             Image("SwiftUI")
-            Image("SwiftUI")
-                .resizable()
-                .frame(width: 50, height: 50)
-            Image("SwiftUI")
-                .resizable()
-                .frame(width: 200, height: 200)
+                .resizable(capInsets: .init(top: 0, leading: 50, bottom: 0, trailing: 0), resizingMode: .tile)
+                .frame(width: 150, height: 150)
         }
     }
 }
