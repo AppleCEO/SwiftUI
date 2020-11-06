@@ -9,14 +9,12 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        HStack(spacing: 20) {
-            Image("SwiftUI").clipShape(Circle())
+        HStack() {
             Image("SwiftUI")
-                .clipShape(Rectangle().inset(by: 10))
-            Image("SwiftUI").clipShape(
-                Ellipse().path(in: CGRect(x: 10, y: 10, width: 80, height: 110))
-            )
+            Image("SwiftUI").renderingMode(.original)
+            Image("SwiftUI").renderingMode(.template)
         }
+        .foregroundColor(.red)
     }
 }
 
