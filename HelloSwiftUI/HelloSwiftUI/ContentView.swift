@@ -11,8 +11,12 @@ struct ContentView: View {
     var body: some View {
         VStack(spacing: 30) {
             Image("SwiftUI")
-            Image("SwiftUI").frame(width: 50, height: 50)
-            Image("SwiftUI").frame(width: 200, height: 200)
+            Image("SwiftUI")
+                .resizable()
+                .frame(width: 50, height: 50)
+            Image("SwiftUI")
+                .resizable()
+                .frame(width: 200, height: 200)
         }
     }
 }
