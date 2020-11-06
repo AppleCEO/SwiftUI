@@ -10,13 +10,9 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         VStack(spacing: 30) {
-            Text("🐶🐱🐰🦊").font(.largeTitle)
-                .background(Color.yellow)
-                .padding()
-            
-            Text("🐶🐱🐰🦊").font(.largeTitle)
-                .padding()
-                .background(Color.yellow)
+            Image("SwiftUI")
+            Image("SwiftUI").frame(width: 50, height: 50)
+            Image("SwiftUI").frame(width: 200, height: 200)
         }
     }
 }
