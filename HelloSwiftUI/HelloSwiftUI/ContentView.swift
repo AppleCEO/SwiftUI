@@ -9,12 +9,10 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        HStack() {
-            Image("SwiftUI")
-            Image("SwiftUI").renderingMode(.original)
-            Image("SwiftUI").renderingMode(.template)
+        HStack(spacing: 20) {
+            Image(systemName: "star.circle")
+            Image(systemName: "star.circle.fill")
         }
-        .foregroundColor(.red)
     }
 }
 
