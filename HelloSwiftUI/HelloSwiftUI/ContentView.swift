@@ -9,15 +9,13 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        HStack(spacing: 30) {
-            Image("SwiftUI").resizable()
-                .aspectRatio(CGSize(width: 1.6, height: 1), contentMode: .fit)
-                .frame(width:150, height:150)
-            
-            Image("SwiftUI").resizable()
-                .aspectRatio(0.7, contentMode: .fill)
-                .frame(width:150, height:150)
-                .clipped()
+        HStack(spacing: 20) {
+            Image("SwiftUI").clipShape(Circle())
+            Image("SwiftUI")
+                .clipShape(Rectangle().inset(by: 10))
+            Image("SwiftUI").clipShape(
+                Ellipse().path(in: CGRect(x: 10, y: 10, width: 80, height: 110))
+            )
         }
     }
 }
