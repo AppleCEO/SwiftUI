@@ -10,8 +10,12 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         HStack(spacing: 20) {
-            Image(systemName: "star.circle")
-            Image(systemName: "star.circle.fill")
+            Image(systemName: "book.fill").imageScale(.small)
+                .foregroundColor(.red)
+            Image(systemName: "book.fill").imageScale(.medium)
+                .foregroundColor(.green)
+            Image(systemName: "book.fill").imageScale(.large)
+                .foregroundColor(.blue)
         }
     }
 }
