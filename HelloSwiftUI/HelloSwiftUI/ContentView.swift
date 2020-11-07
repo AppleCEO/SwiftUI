@@ -9,11 +9,32 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        HStack(spacing: 20) {
-            Image(systemName: "arrow.up").font(Font.title.weight(.black))
-            Image(systemName: "arrow.left").font(Font.title.weight(.semibold))
-            Image(systemName: "arrow.down").font(Font.title.weight(.light))
-            Image(systemName: "arrow.right").font(Font.title.weight(.ultraLight))
+        
+        VStack {
+            VStack {
+                Rectangle()
+                    .fill(Color.green)
+                    .frame(width: 150, height: 150)
+                Rectangle()
+                    .fill(Color.yellow)
+                    .frame(width: 150, height: 150)
+            }
+            HStack {
+                Rectangle()
+                    .fill(Color.green)
+                    .frame(width: 150, height: 150)
+                Rectangle()
+                    .fill(Color.yellow)
+                    .frame(width: 150, height: 150)
+            }
+            ZStack {
+                Rectangle()
+                    .fill(Color.green)
+                    .frame(width: 150, height: 150)
+                Rectangle()
+                    .fill(Color.yellow)
+                    .frame(width: 150, height: 150)
+            }
         }
     }
 }
