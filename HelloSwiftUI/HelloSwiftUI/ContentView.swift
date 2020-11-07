@@ -9,33 +9,11 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        
-        VStack {
-            VStack {
-                Rectangle()
-                    .fill(Color.green)
-                    .frame(width: 150, height: 150)
-                Rectangle()
-                    .fill(Color.yellow)
-                    .frame(width: 150, height: 150)
-            }
-            HStack {
-                Rectangle()
-                    .fill(Color.green)
-                    .frame(width: 150, height: 150)
-                Rectangle()
-                    .fill(Color.yellow)
-                    .frame(width: 150, height: 150)
-            }
-            ZStack {
-                Rectangle()
-                    .fill(Color.green)
-                    .frame(width: 150, height: 150)
-                Rectangle()
-                    .fill(Color.yellow)
-                    .frame(width: 150, height: 150)
-            }
+        HStack(alignment: .center) {
+            Rectangle().fill(Color.green).frame(width: 150, height: 150, alignment: .bottom)
+            Rectangle().fill(Color.yellow).frame(width: 150, height: 550)
         }
+        
     }
 }
 
