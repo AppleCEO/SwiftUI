@@ -9,11 +9,14 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        HStack(alignment: .center) {
-            Rectangle().fill(Color.green).frame(width: 150, height: 150, alignment: .bottom)
-            Rectangle().fill(Color.yellow).frame(width: 150, height: 550)
+        HStack {
+            Text("HStack").font(.title).foregroundColor(.blue)
+            Text("은 뷰를 가로로 배열합니다.")
+            Text("!")
         }
-        
+        .padding()
+        .border(Color.black)
+        .font(.largeTitle)
     }
 }
 
