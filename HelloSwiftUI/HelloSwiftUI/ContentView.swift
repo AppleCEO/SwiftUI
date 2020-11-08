@@ -10,7 +10,8 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         HStack {
-            Spacer().frame(width: 100)
+            Text("Spacer MinLength").font(.title).foregroundColor(.white)
+            Spacer(minLength: 100)
             Text("Spacer").font(.title).background(Color.yellow)
         }.background(Color.blue)
     }
