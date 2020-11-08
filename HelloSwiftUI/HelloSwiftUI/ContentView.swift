@@ -9,8 +9,8 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Spacer()
+        ZStack {
+            Color.clear
             Text("Spacer").font(.title).background(Color.yellow)
         }.background(Color.blue)
     }
