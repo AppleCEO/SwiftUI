@@ -9,10 +9,15 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        Rectangle().fill(Color.yellow).frame(width: 150, height: 150)
-            .background(
-                Rectangle().fill(Color.green)
-            )
+        Circle()
+            .fill(Color.yellow.opacity(0.8))
+            .frame(width: 250, height: 250)
+            .overlay(Text("Joystick").font(.largeTitle))
+            .overlay(Image(systemName: "arrow.up").font(.title).padding(), alignment: .top)
+            .overlay(Image(systemName: "arrow.left").font(.title).padding(), alignment: .leading)
+            .overlay(Image(systemName: "arrow.up.right.circle.fill").font(.title), alignment: .topTrailing)
+            .background(Image(systemName: "arrow.down").font(.title).padding(), alignment: .bottom)
+            .background(Image(systemName: "arrow.right").font(.title).padding(), alignment: .trailing)
     }
 }
 
