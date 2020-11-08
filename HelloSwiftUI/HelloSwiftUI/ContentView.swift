@@ -9,9 +9,9 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        Rectangle().fill(Color.green).frame(width: 150, height: 150)
-            .overlay(
-                Rectangle().fill(Color.yellow)
+        Rectangle().fill(Color.yellow).frame(width: 150, height: 150)
+            .background(
+                Rectangle().fill(Color.green)
             )
     }
 }
