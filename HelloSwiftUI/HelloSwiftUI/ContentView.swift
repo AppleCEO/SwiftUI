@@ -9,17 +9,11 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        let leadingItem = Button(action: { print("Leading item tapped")}) {
-            Image(systemName: "bell").imageScale(.large)
-        }
-        let trailingItem = Button(action: { print("Trailing")}) {
-            Image(systemName: "gear").imageScale(.large)
-        }
-        return NavigationView {
-            Image("SwiftUI")
-                .navigationBarItems(leading: leadingItem, trailing: trailingItem)
-                .navigationBarTitle("내비게이션 바 아이템")
-                
+        NavigationView {
+            NavigationLink(destination: Text("Destination View")) {
+                Image("SwiftUI")
+            }
+            .navigationBarTitle("내비게이션 링크")
         }
     }
 }
