@@ -10,14 +10,11 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         VStack(spacing: 30) {
-            Button("DefaultButtonStyle") {}
-                .buttonStyle(DefaultButtonStyle())
-            
-            Button("BorderlessButtonStyle") {}
-                .buttonStyle(BorderlessButtonStyle())
-            
-            Button("PlainButtonStyle") {}
-                .buttonStyle(PlainButtonStyle())
+            Image(systemName: "person.circle").imageScale(.large)
+                .onTapGesture { print("onTapGesture") }
+            Button(action: { print("버튼")}) {
+                Image(systemName: "person.circle").imageScale(.large)
+            }
         }
     }
 }
