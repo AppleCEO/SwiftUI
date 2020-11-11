@@ -9,9 +9,17 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        NavigationView {
+        let leadingItem = Button(action: { print("Leading item tapped")}) {
+            Image(systemName: "bell").imageScale(.large)
+        }
+        let trailingItem = Button(action: { print("Trailing")}) {
+            Image(systemName: "gear").imageScale(.large)
+        }
+        return NavigationView {
             Image("SwiftUI")
-                .navigationBarTitle("내비게이션 바 타이틀", displayMode: .inline)
+                .navigationBarItems(leading: leadingItem, trailing: trailingItem)
+                .navigationBarTitle("내비게이션 바 아이템")
+                
         }
     }
 }
