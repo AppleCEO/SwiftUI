@@ -11,6 +11,7 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             Image("SwiftUI")
+                .navigationBarTitle("내비게이션 바 타이틀")
         }
     }
 }
