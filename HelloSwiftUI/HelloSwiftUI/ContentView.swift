@@ -9,22 +9,15 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        HStack(spacing: 20) {
-            Button("Button") {
-                print("Button1")
-            }
-            Button(action: { print("Button2")}) {
-                Text("Button")
-                    .padding()
-                    .background(RoundedRectangle(cornerRadius: 10).strokeBorder())
-            }
-            Button(action: { print("Button3")}) {
-                Circle()
-                    .stroke(lineWidth: 2)
-                    .frame(width: 80, height: 80)
-                    .overlay(Text("Button"))
-            }
-            .accentColor(.green)
+        VStack(spacing: 30) {
+            Button("DefaultButtonStyle") {}
+                .buttonStyle(DefaultButtonStyle())
+            
+            Button("BorderlessButtonStyle") {}
+                .buttonStyle(BorderlessButtonStyle())
+            
+            Button("PlainButtonStyle") {}
+                .buttonStyle(PlainButtonStyle())
         }
     }
 }
