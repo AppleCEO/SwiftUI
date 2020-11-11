@@ -9,12 +9,8 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack(spacing: 30) {
-            Image(systemName: "person.circle").imageScale(.large)
-                .onTapGesture { print("onTapGesture") }
-            Button(action: { print("버튼")}) {
-                Image(systemName: "person.circle").imageScale(.large)
-            }
+        NavigationView {
+            Image("SwiftUI")
         }
     }
 }
