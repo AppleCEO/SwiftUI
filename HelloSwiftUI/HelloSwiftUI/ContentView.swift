@@ -9,34 +9,23 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        ZStack {
-            VStack {
-                Spacer()
-                Image(systemName: "arrow.down").font(.title).padding()
+        HStack(spacing: 20) {
+            Button("Button") {
+                print("Button1")
             }
-            HStack {
-                Spacer()
-                Image(systemName: "arrow.right").font(.title).padding()
+            Button(action: { print("Button2")}) {
+                Text("Button")
+                    .padding()
+                    .background(RoundedRectangle(cornerRadius: 10).strokeBorder())
             }
-            Circle()
-                .fill(Color.yellow.opacity(0.8))
-                .frame(width: 250, height: 250)
-            
-            Text("Joystick").font(.largeTitle)
-            
-            ZStack(alignment: .topTrailing) {
-                Color.clear
-                Image(systemName: "arrow.up.right.circle.fill").font(.title)
+            Button(action: { print("Button3")}) {
+                Circle()
+                    .stroke(lineWidth: 2)
+                    .frame(width: 80, height: 80)
+                    .overlay(Text("Button"))
             }
-            VStack {
-                Image(systemName: "arrow.up").font(.title).padding()
-                Spacer()
-            }
-            HStack {
-                Image(systemName: "arrow.left").font(.title).padding()
-                Spacer()
-            }
-        }.frame(width: 250, height: 250)
+            .accentColor(.green)
+        }
     }
 }
 
