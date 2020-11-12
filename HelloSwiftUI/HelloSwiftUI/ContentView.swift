@@ -8,9 +8,19 @@
 import SwiftUI
 
 struct ContentView: View {
+    let fruits = ["사과", "배", "포도", "바나나"]
+    let drinks = ["물", "우유", "탄산수"]
     var body: some View {
-        List(0..<100) {
-            Text("\($0)")
+        List {
+            Text("Fruits").font(.largeTitle)
+            ForEach(fruits, id: \.self) {
+                Text($0)
+            }
+            
+            Text("Drinks").font(.largeTitle)
+            ForEach(drinks, id: \.self) {
+                Text($0)
+            }
         }
     }
 }
