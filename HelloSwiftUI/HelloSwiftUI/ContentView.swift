@@ -10,21 +10,21 @@ import SwiftUI
 struct ContentView: View {
     
     var body: some View {
-        let titles = ["Fruits", "Drinks"]
-        let data = [fruits, drinks]
+        GeometryReader { _ in
+            Circle().fill(Color.purple)
+                .frame(width: 200, height: 200)
+                .overlay(Text("Center").font(.title))
+        }.background(Color.gray)
         
-        return List {
-            ForEach(data.indices) { index in
-                Section(
-                    header: Text(titles[index]).font(.title),
-                    footer: HStack { Spacer(); Text("\(data[index].count)건")}
-                ) {
-                    ForEach(data[index], id: \.self) {
-                        Text($0)
-                    }
-                }
-            }
-        }.listStyle(GroupedListStyle())
+        GeometryReader { _ in
+            Circle().fill(Color.blue)
+                .frame(width: 350, height: 350)
+            Circle().fill(Color.orange)
+                .frame(width: 280, height: 280)
+            Circle().fill(Color.purple)
+                .frame(width: 200, height: 200)
+            Text("TopLeading").font(.title)
+        }.background(Color.gray)
     }
     
     let fruits = ["사과", "배", "포도", "바나나"]
