@@ -24,7 +24,7 @@ struct ContentView: View {
                     }
                 }
             }
-        }
+        }.listStyle(GroupedListStyle())
     }
     
     let fruits = ["사과", "배", "포도", "바나나"]
