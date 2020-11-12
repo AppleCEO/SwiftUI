@@ -9,11 +9,8 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        List {
-            Text("List").font(.largeTitle)
-            Image("SwiftUI")
-            Circle().frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/)
-            Color(.red).frame(width: 100, height: 100)
+        List(0..<100) {
+            Text("\($0)")
         }
     }
 }
