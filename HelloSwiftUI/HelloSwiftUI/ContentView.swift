@@ -9,14 +9,17 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        let destination = Text("Destination View")
-            .navigationBarBackButtonHidden(true)
-        return NavigationView {
-            NavigationLink(
-                destination: destination) {
-                Image("SwiftUI").renderingMode(.original)
-            }
-            .navigationBarTitle("내비게이션 바 백버튼 히든")
+        List {
+            Text("1")
+            Text("2")
+            Text("3")
+            Text("4")
+            Text("5")
+            Text("6")
+            Text("7")
+            Text("8")
+            Text("9")
+            Text("10")
         }
     }
 }
