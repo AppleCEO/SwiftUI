@@ -10,25 +10,20 @@ import SwiftUI
 struct ContentView: View {
     
     var body: some View {
-        GeometryReader { _ in
-            Circle().fill(Color.purple)
-                .frame(width: 200, height: 200)
-                .overlay(Text("Center").font(.title))
-        }.background(Color.gray)
-        
-        GeometryReader { _ in
-            Circle().fill(Color.blue)
-                .frame(width: 350, height: 350)
-            Circle().fill(Color.orange)
-                .frame(width: 280, height: 280)
-            Circle().fill(Color.purple)
-                .frame(width: 200, height: 200)
-            Text("TopLeading").font(.title)
-        }.background(Color.gray)
+        HStack {
+            Text("Frame").background(Color.yellow)
+                .frame(width: 100, height: 100, alignment: .leading)
+                .border(Color.red)
+            Text("Frame").background(Color.yellow)
+                .frame(width: 100, height: 100)
+                .border(Color.red)
+            
+            Text("Frame").background(Color.yellow)
+                .frame(width: 100, height: 100, alignment: .trailing)
+                .border(Color.red)
+        }
     }
     
-    let fruits = ["사과", "배", "포도", "바나나"]
-    let drinks = ["물", "우유", "탄산수"]
 }
 
 struct ContentView_Previews: PreviewProvider {
