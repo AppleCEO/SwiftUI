@@ -10,17 +10,30 @@ import SwiftUI
 struct ContentView: View {
     
     var body: some View {
-        VStack(spacing: 100) {
-            Group {
-                Text("FixedSize를 적용하면 글자가 생략되지 않습니다.")
-                
-                Text("FixedSize를 적용하면 글자가 생략되지 않습니다.").font(.title)
-                    .fixedSize(horizontal: true, vertical: false)
-                
-                Text("FixedSize를 적용하면 글자가 생략되지 않습니다.").font(.title)
-                    .fixedSize(horizontal: false, vertical: true)
-            }.font(.title)
-            .frame(width: 150, height: 40)
+        VStack(spacing: 20) {
+            HStack {
+                Color.red
+                Color.green
+                Color.blue
+            }.frame(height: 40)
+            
+            HStack {
+                Color.red.layoutPriority(1)
+                Color.green
+                Color.blue.layoutPriority(1)
+            }.frame(height: 40)
+            
+            HStack {
+                Color.red.layoutPriority(1)
+                Color.green.frame(minWidth: 30)
+                Color.blue.frame(maxWidth: 50).layoutPriority(1)
+            }.frame(height: 40)
+            
+            HStack {
+                Color.red.frame(width: 50)
+                Color.green.layoutPriority(1)
+                Color.blue.frame(maxWidth: 50).layoutPriority(1)
+            }.frame(height: 40)
         }
     }
     
