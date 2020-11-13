@@ -10,11 +10,17 @@ import SwiftUI
 struct ContentView: View {
     
     var body: some View {
-        VStack {
-            Text("Frame Modifier").font(.title).bold().frame(width: 80, height: 30).fixedSize()
-            Rectangle().fixedSize()
-            Color.red.fixedSize()
-            Image("SwiftUI").resizable().fixedSize()
+        VStack(spacing: 100) {
+            Group {
+                Text("FixedSize를 적용하면 글자가 생략되지 않습니다.")
+                
+                Text("FixedSize를 적용하면 글자가 생략되지 않습니다.").font(.title)
+                    .fixedSize(horizontal: true, vertical: false)
+                
+                Text("FixedSize를 적용하면 글자가 생략되지 않습니다.").font(.title)
+                    .fixedSize(horizontal: false, vertical: true)
+            }.font(.title)
+            .frame(width: 150, height: 40)
         }
     }
     
