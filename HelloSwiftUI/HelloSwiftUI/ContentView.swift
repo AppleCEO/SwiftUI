@@ -11,10 +11,10 @@ struct ContentView: View {
     
     var body: some View {
         VStack {
-            Text("Frame Modifier").font(.title).bold().frame(width: 80, height: 30)
-            Rectangle()
-            Color.red
-            Image("SwiftUI").resizable()
+            Text("Frame Modifier").font(.title).bold().frame(width: 80, height: 30).fixedSize()
+            Rectangle().fixedSize()
+            Color.red.fixedSize()
+            Image("SwiftUI").resizable().fixedSize()
         }
     }
     
