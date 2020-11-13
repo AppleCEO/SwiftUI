@@ -11,17 +11,17 @@ struct ContentView: View {
     
     var body: some View {
         HStack {
-            Text("Frame").background(Color.yellow)
-                .frame(width: 100, height: 100, alignment: .leading)
-                .border(Color.red)
-            Text("Frame").background(Color.yellow)
-                .frame(width: 100, height: 100)
-                .border(Color.red)
+            Rectangle().fill(Color.red).frame(minWidth: 100)
+            Rectangle().fill(Color.orange).frame(maxWidth: 15)
             
-            Text("Frame").background(Color.yellow)
-                .frame(width: 100, height: 100, alignment: .trailing)
-                .border(Color.red)
-        }
+            Rectangle().fill(Color.yellow).frame(height: 150)
+            Rectangle().fill(Color.green).frame(maxHeight: .infinity)
+            
+            Rectangle().fill(Color.blue)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+            Rectangle().fill(Color.purple)
+            
+        }.frame(width: 300, height: 150)
     }
     
 }
