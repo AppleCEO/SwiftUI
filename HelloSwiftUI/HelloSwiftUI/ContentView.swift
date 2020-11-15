@@ -41,10 +41,9 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        Group {
+        ForEach(["iPhone 11 Pro", "iPhone 8"], id: \.self) {
             ContentView()
-                .previewDevice(PreviewDevice(rawValue: "iPhone 11 Pro"))
-            ContentView()
+                .previewDevice(PreviewDevice(rawValue: $0))
         }
     }
 }
