@@ -8,16 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
-    @ObservedObject var user: User = User()
-    
     var body: some View {
-        VStack(spacing: 30) {
-            Text(user.name)
-            
-            Button(action: { self.user.score += 1 }) {
-                Text(user.score.description)
-            }
-        }
+        Superview().environmentObject(User())
     }
 }
 
@@ -25,6 +17,15 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
     }
+}
+
+struct Superview: View {
+    var body: some View { Subview() }
+}
+
+struct Subview: View {
+    @EnvironmentObject var user: User
+    var body: some View { Text(user.name.description) }
 }
 
 class User: ObservableObject {
