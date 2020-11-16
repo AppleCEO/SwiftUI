@@ -8,15 +8,15 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var isFavorite = true
-    @State private var count = 0
+    @ObservedObject var user: User = User()
     
     var body: some View {
         VStack(spacing: 30) {
-            Toggle(isOn: $isFavorite) {
-                Text("isFavorite : \(isFavorite.description)")
+            Text(user.name)
+            
+            Button(action: { self.user.score += 1 }) {
+                Text(user.score.description)
             }
-            Stepper("Count: \(count)", value: $count)
         }
     }
 }
@@ -25,4 +25,9 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
     }
+}
+
+class User: ObservableObject {
+    let name = "User Name"
+    @Published var score = 0
 }
