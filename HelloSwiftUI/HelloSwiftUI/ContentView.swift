@@ -8,18 +8,21 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var showingAlert = false
+    @State private var showingActionSheet = false
     
     var body: some View {
-        Button(action: { self.showingAlert = true }) {
-            Text("alert")
+        Button(action: { self.showingActionSheet = true }) {
+            Text("ActionSheet")
         }
-        .alert(isPresented: $showingAlert) {
-            Alert(
-                title: Text("제목"),
-                message: Text("내용"),
-                primaryButton: .default(Text("확인"), action: { print("확인") }),
-                secondaryButton: .cancel(Text("취소"))
+        .actionSheet(isPresented: $showingActionSheet) {
+            ActionSheet(title: Text("제목"),
+                        message: Text("내용"),
+                        buttons: [
+                            .default(Text("버튼1")),
+                            .default(Text("버튼2")),
+                            .destructive(Text("버튼3")),
+                            .cancel(Text("취소")),
+                        ]
             )
         }
     }
