@@ -8,15 +8,38 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var showingSheet = false
     
     var body: some View {
-        Button(action: { self.showingSheet.toggle() }) {
-            Text("Present")
-                .font(.title).foregroundColor(.blue)
+        GeometryReader { geometry in
+            VStack {
+                Text("Vertical ScrollView").font(.largeTitle)
+                ScrollView {
+                    ForEach(0..<10) { i in
+                        Circle()
+                            .fill(Color(white: 0.2 + (0.8 * Double(i) / 10)))
+                            .frame(width: 80, height: 80)
+                    }
+                    .frame(width: geometry.size.width / 2)
+                }
+                .frame(height: geometry.size.height / 2)
+                .padding(.bottom)
+                
+                Text("Horizontal ScrollView").font(.largeTitle)
+                ScrollView(.horizontal) {
+                    HStack {
+                        ForEach(0..<10) { i in
+                            RoundedRectangle(cornerRadius: 10)
+                                .fill(.yellow)
+                                .frame(width: 100, height: 100)
+                                .scaleEffect(1 - (0.7 * CGFloat(i) / 10))
+                        }
+                    }
+                    .frame(height: geometry.size.height / 5)
+                    .padding(.horizontal)
+                }
+            }
         }
-        .sheet(isPresented: $showingSheet, onDismiss: { print("Dismissed")},
-               content: { PresentedView() })
+        
     }
 }
 
