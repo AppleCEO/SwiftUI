@@ -8,64 +8,20 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var results = [Result]()
-    
     var body: some View {
-        List(results, id: \.code) { item in
-            VStack(alignment: .leading) {
-                Text(item.code)
-                    .font(.headline)
-                Text(item.string)
-            }
-        }
-        .task {
-            await loadData()
-        }
-    }
-    
-    func loadData() async {
-        guard let url = URL(string: "https://reqres.in/api/cupcakes") else {
-            print("Invalid URL")
-            return
-        }
-        
-        var request = URLRequest(url: url)
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.httpMethod = "POST"
-        
-        do {
-//            let (data, _) = try await URLSession.shared.upload(for: request, from: encoded)
-//            if let decodedResponse = try? JSONDecoder().decode(Response.self, from: data) {
-//                results = decodedResponse.results
-//            }
-            let jsonData = try JSONEncoder().encode(BioAuthModel(data: "gapcxaRVr+2Kyhta0uc3KuEolqEM8xL+4X7r+JSQU7c="))
-            let url = URL(string: "https://api-stg-kr.paywatchglobal.com/authenticate/v2.0/bio_auth/check/")!
-            var request = URLRequest(url: url)
-            request.httpMethod = "POST"
-            request.setValue( "Bearer QVlOvICNb1cytJIBwQhJ9H4lxGkRAE", forHTTPHeaderField: "Authorization")
-            request.setValue(String(jsonData.count), forHTTPHeaderField: "Content-Length")
-            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-            request.httpBody = jsonData
-
-            let task = URLSession.shared.dataTask(with: request) { data, response, error in
-                guard let data = data, error == nil else {
-                    print(error?.localizedDescription ?? "No data")
-                    return
-                }
-                let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
-                if let responseJSON = responseJSON as? [String: Any] {
-                    print(responseJSON)
-                    if let decodedResponse = try? JSONDecoder().decode(Response.self, from: data) {
-                        results = decodedResponse.targets
-                        print(decodedResponse.targets[0].string)
-                    }
-//                    if let isMatched = responseJSON["is_matched"] as? Bool {
-//                    }
-                }
-            }
-            task.resume()
-        } catch {
-            print("Invalid data")
+        VStack(spacing: 0) {
+            VStack(spacing: 0){
+                Text("페이워치 EWA 서비스 이용 시 회원님 명의로 자동 발급 되는 가상계좌로, 편리하고 안심할 수 있는 안전한 결제 시스템이에요. EWA 이용 금액 자동 상환을 위한 용도로만 사용됩니다.")
+                    .foregroundColor(.white)
+                    .font(.system(size: 15))
+                    .lineSpacing(5)
+                    .padding(16)
+            }.background(Color.orange)
+                .cornerRadius(4)
+                .padding(.horizontal, 24)
+            Triangle()
+                .fill(Color.orange)
+                .frame(width: 18, height: 12)
         }
     }
 }
@@ -76,25 +32,17 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 
-//struct Response: Codable {
-//    var results: [Result]
-//}
-//
-//struct Result: Codable {
-//    var trackId: Int
-//    var trackName: String
-//    var collectionName: String
-//}
+struct Triangle: Shape {
+    func path(in rect: CGRect) -> Path {
+        var path = Path()
 
-struct BioAuthModel: Codable {
-    let data: String
+        path.move(to: CGPoint(x: rect.minX, y: rect.minY))
+        path.addLine(to: CGPoint(x: rect.minX, y: rect.minY))
+        path.addLine(to: CGPoint(x: rect.maxX, y: rect.minY))
+        path.addLine(to: CGPoint(x: rect.midX, y: rect.maxY))
+
+        return path
+    }
 }
 
-struct Result: Codable {
-    let string: String
-    let code: String
-}
 
-struct Response: Codable {
-    var targets: [Result]
-}
