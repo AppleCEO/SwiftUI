@@ -8,22 +8,46 @@
 import SwiftUI
 
 struct ContentView: View {
-    var body: some View {
-        VStack(spacing: 0) {
-            VStack(spacing: 0){
-                Text("페이워치 EWA 서비스 이용 시 회원님 명의로 자동 발급 되는 가상계좌로, 편리하고 안심할 수 있는 안전한 결제 시스템이에요. EWA 이용 금액 자동 상환을 위한 용도로만 사용됩니다.")
-                    .foregroundColor(.white)
-                    .font(.system(size: 15))
-                    .lineSpacing(5)
-                    .padding(16)
-            }.background(Color.orange)
-                .cornerRadius(4)
-                .padding(.horizontal, 24)
-            Triangle()
-                .fill(Color.orange)
-                .frame(width: 18, height: 12)
-        }
+  @State private var scrollOffset: CGFloat = .zero
+
+  var body: some View {
+    ZStack {
+      scrollView
+      statusBarView
     }
+  }
+
+  var scrollView: some View {
+    ScrollViewOffset {
+      LazyVStack {
+        ForEach(0..<100) { index in
+          Text("\(index)")
+        }
+      }
+    } onOffsetChange: { offset in
+        print("New ScrollView offset: \(offset)")
+      }
+  }
+
+  var statusBarView: some View {
+    GeometryReader { geometry in
+      Color.red
+        .opacity(opacity)
+        .frame(height: geometry.safeAreaInsets.top, alignment: .top)
+        .edgesIgnoringSafeArea(.top)
+    }
+  }
+
+  var opacity: Double {
+    switch scrollOffset {
+    case -100...0:
+      return Double(-scrollOffset) / 100.0
+    case ...(-100):
+      return 1
+    default:
+      return 0
+    }
+  }
 }
 
 struct ContentView_Previews: PreviewProvider {
@@ -32,17 +56,41 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 
-struct Triangle: Shape {
-    func path(in rect: CGRect) -> Path {
-        var path = Path()
+struct ScrollViewOffset<Content: View>: View {
+  let content: () -> Content
+    let onOffsetChange: (CGFloat) -> Void
 
-        path.move(to: CGPoint(x: rect.minX, y: rect.minY))
-        path.addLine(to: CGPoint(x: rect.minX, y: rect.minY))
-        path.addLine(to: CGPoint(x: rect.maxX, y: rect.minY))
-        path.addLine(to: CGPoint(x: rect.midX, y: rect.maxY))
+    init(
+        @ViewBuilder content: @escaping () -> Content,
+        onOffsetChange: @escaping (CGFloat) -> Void
+      ) {
+        self.content = content
+        self.onOffsetChange = onOffsetChange
+      }
 
-        return path
+  var body: some View {
+    ScrollView {
+      offsetReader
+      content()
+        .padding(.top, -8) // 👈🏻 places the real content as if our `offsetReader` was not there.
     }
+    .coordinateSpace(name: "frameLayer")
+        .onPreferenceChange(OffsetPreferenceKey.self, perform: onOffsetChange)
+  }
+
+  var offsetReader: some View {
+    GeometryReader { proxy in
+      Color.clear
+        .preference(
+          key: OffsetPreferenceKey.self,
+          value: proxy.frame(in: .named("frameLayer")).minY
+        )
+    }
+    .frame(height: 0) // 👈🏻 make sure that the reader doesn't affect the content height
+  }
 }
 
-
+private struct OffsetPreferenceKey: PreferenceKey {
+  static var defaultValue: CGFloat = .zero
+  static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {}
+}
